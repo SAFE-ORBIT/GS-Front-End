@@ -1,0 +1,81 @@
+:root{
+    --color1: #2d3133;
+    --background-color:#101415;
+    --background-cards:#151c35;
+    --background-color2:#04090c;
+    --font-family: "Orbitron", sans-serif;
+    --text-color: #f8f8f8;
+    --text-color2: #59eed8;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+
+head{
+    background-color: var(--background-color);
+}
+
+
+#img-logo {
+    width: 80px;
+    height: auto;
+}
+
+body{
+    background-color: var(--background-color2);
+    font-family: var(--font-family);
+    color: var(--text-color);
+
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: var(--background-color);
+    color:var(--text-color2);
+    padding: 15px;
+}
+
+
+.container {
+    display: grid;
+    grid-template-rows: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+/* CARDS */
+.card {
+    background: var(--background-cards);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.card h2 {
+    color: var(--text-color2);
+    margin-bottom: 15px;
+}
+
+.card p {
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* FOOTER */
+#rodape {
+    text-align: center;
+    padding: 20px;
+    background: #11182d;
+    margin-top: 30px;
+}
