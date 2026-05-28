@@ -68,6 +68,7 @@ header {
 }
 
 .card p {
+    padding: 5px;
     line-height: 1.6;
     text-align: justify;
 }
