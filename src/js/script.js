@@ -1,22 +1,48 @@
-/* ==========================================================================
-   ARQUIVO DE SCRIPT PRINCIPAL - SAFE ORBIT
-   Este arquivo contem a logica interativa do site, escrita de forma simples e
-   comentada em portugues para facilitar a leitura de programadores iniciantes.
-   ========================================================================== */
-
 // Garantir que o script rode apos o carregamento completo do HTML
 document.addEventListener("DOMContentLoaded", () => {
     
+    // --- 0. TELA DE ABERTURA (SPLASH SCREEN DE VIDEO) ---
+    const telaSplash = document.getElementById("splash-screen");
+    const videoSplash = document.getElementById("splash-video");
+    const botaoPularSplash = document.getElementById("splash-btn-pular");
+
+    // Funcao para ocultar o splash screen de forma suave
+    function encerrarSplash() {
+        if (telaSplash) {
+            telaSplash.classList.add("fade-out"); // Dispara a transicao de fade-out do CSS
+            
+            // Pausa o video apos sumir da tela para economizar recursos de processamento
+            setTimeout(() => {
+                if (videoSplash) {
+                    videoSplash.pause();
+                }
+            }, 800);
+        }
+    }
+
+    // Evento de clique para pular a animacao e acessar o site imediatamente
+    if (botaoPularSplash) {
+        botaoPularSplash.addEventListener("click", encerrarSplash);
+    }
+
+    // Evento disparado automaticamente quando a execucao do video terminar
+    if (videoSplash) {
+        videoSplash.addEventListener("ended", encerrarSplash);
+        
+        // Garante a liberacao da tela caso o video demore para carregar ou falhe
+        setTimeout(encerrarSplash, 8000); // Limite de tolerância de 8 segundos
+    }
+
     // --- 1. SELECAO DE TEMAS (TROCA DE TEMA) ---
     // Seleciona os botoes de tema pelo ID
     const botaoTema1 = document.getElementById("tema-padrao");
-    const botaoTema2 = document.getElementById("tema-nebulosa");
-    const botaoTema3 = document.getElementById("tema-eclipse");
+    const botaoTema2 = document.getElementById("tema-cinza");
+    const botaoTema3 = document.getElementById("tema-azul");
 
     // Funcao para mudar a classe do body, alterando as variaveis de cores no CSS
     function mudarTema(nomeTema) {
         // Remove as classes de temas anteriores
-        document.body.classList.remove("tema-padrao", "tema-nebulosa", "tema-eclipse");
+        document.body.classList.remove("tema-padrao", "tema-cinza", "tema-azul");
         // Adiciona a nova classe selecionada
         document.body.classList.add(nomeTema);
         // Salva a escolha do usuario no navegador para persistir na proxima visita
@@ -28,10 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
         botaoTema1.addEventListener("click", () => mudarTema("tema-padrao"));
     }
     if (botaoTema2) {
-        botaoTema2.addEventListener("click", () => mudarTema("tema-nebulosa"));
+        botaoTema2.addEventListener("click", () => mudarTema("tema-cinza"));
     }
     if (botaoTema3) {
-        botaoTema3.addEventListener("click", () => mudarTema("tema-eclipse"));
+        botaoTema3.addEventListener("click", () => mudarTema("tema-azul"));
     }
 
     // Recupera o tema salvo no navegador anteriormente (se existir)
@@ -44,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // --- 2. SLIDESHOW DE IMAGENS ---
-    // Lista com os caminhos das imagens e seus textos alternativos (obrigatorio pelo BRD)
+    // 2. SLIDESHOW DE IMAGENS
+    // Lista com os caminhos das imagens e seus textos alternativos
     const imagensSlideshow = [
         {
             src: "./src/imgs/debris_orbit.png",
@@ -111,9 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const campoEmail = document.getElementById("form-email");
             const campoMensagem = document.getElementById("form-mensagem");
 
-            // Verifica se algum dos campos esta vazio (removendo espacos extras)
+            // Verifica se algum dos campos esta vazio
             if (campoNome.value.trim() === "" || campoEmail.value.trim() === "" || campoMensagem.value.trim() === "") {
-                // Impede o envio do formulario para o servidor
+                // Impede o envio do formulario
                 evento.preventDefault();
                 
                 // Exibe a mensagem de erro na tela

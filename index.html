@@ -5,19 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Safe Orbit - Monitoramento e Protecao Espacial</title>
     
-    <!-- Link para o Google Fonts (Orbitron) conforme exigido pelo BRD -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@400;600;700;900&family=Space+Mono&display=swap" rel="stylesheet">
     
-    <!-- CSS Externo: Reset primeiro, depois estilos customizados da pagina -->
     <link rel="stylesheet" href="./src/css/reset.css">
     <link rel="stylesheet" href="./src/css/style.css">
     
-    <!-- JavaScript Externo carregado de forma assincrona/adiada -->
     <script src="./src/js/script.js" defer></script>
 </head>
 <body class="tema-padrao">
+
+    <!-- SPLASH SCREEN DE VIDEO (TELA DE ABERTURA) -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <!-- Video em autoplay e mudo para conformidade com navegadores modernose acessibilidade -->
+            <video id="splash-video" autoplay muted playsinline>
+                <source src="./src/imgs/satelite_final.webm" type="video/webm">
+                Seu navegador nao suporta a reproducao de videos em HTML5.
+            </video>
+            <!-- Titulo do grupo no meio do splash screen -->
+            <h1 class="splash-titulo">Safe Orbit</h1>
+            <!-- Botao de skip para pular a animacao -->
+            <button id="splash-btn-pular" class="btn-site-splash">Entrar no Site</button>
+        </div>
+    </div>
 
     <!-- CABECALHO: Contem o nome da solucao, logo, navegacao e painel de temas -->
     <header>
@@ -39,8 +51,8 @@
             <!-- Painel para selecao dos 3 temas de fundo exigidos -->
             <div class="painel-temas">
                 <button id="tema-padrao" class="tema-btn" title="Tema Escuro Padrao"></button>
-                <button id="tema-nebulosa" class="tema-btn" title="Tema Nebulosa Roxo"></button>
-                <button id="tema-eclipse" class="tema-btn" title="Tema Eclipse Dourado"></button>
+                <button id="tema-cinza" class="tema-btn" title="Tema Cinza Claro"></button>
+                <button id="tema-azul" class="tema-btn" title="Tema Azul Claro"></button>
             </div>
         </nav>
     </header>
@@ -61,25 +73,31 @@
         </section>
 
         <!-- SECAO 1: O Problema -->
-        <!-- Respeita rigidamente as regras: max 20 palavras por paragrafo, max 2 paragrafos -->
         <section class="card" id="problema">
             <h2>Problema</h2>
             <p>
-                O lixo espacial ameaça satélites na órbita terrestre. Milhões de detritos perigosos não são monitorados atualmente.
+                O lixo espacial ameaça satélites na órbita terrestre, 
+                existem pequenos detritos que não podem ser detectados por radares espaciais. 
+
             </p>
-            <p>
-                Nossa solução monitora detritos e realiza desvios automáticos. Também repara impactos com cápsulas de resina protetora.
+            <p>    
+                Assim milhões desses detritos colidem com satélites, 
+                provocando danos, diminuindo sua vida útil e afetando serviços que dependem desses satélites,
+                como GPS, Internet, previsão do tempo entre muitos outros.
             </p>
+
         </section>
 
         <!-- SECAO 2: Tecnologia -->
         <section class="card" id="tecnologia">
             <h2>Tecnologia</h2>
             <p>
-                Usamos radares avançados para detectar objetos de qualquer tamanho. Um algoritmo inteligente calcula riscos de colisão.
+                Usamos radares avançados para detectar detritos de diversos tamanhos. 
+                Depois um algoritmo inteligente calcula riscos de colisão.
             </p>
             <p>
-                Se houver colisão iminente, propulsores elétricos ou químicos realizam desvios. Cápsulas de resina reparam danos físicos.
+                Se houver risco colisão, propulsores elétricos ou químicos realizam desvios. 
+                E caso o satélite seja impactado por pequenos detritos cápsulas de resina reparam danos físicos.
             </p>
         </section>
 
@@ -90,7 +108,8 @@
                 Nosso objetivo é evitar colisões e aumentar a vida útil dos satélites em órbita ativa.
             </p>
             <p>
-                Queremos reduzir a criação de lixo espacial gerado pela destruição precoce desses equipamentos.
+                Assim diminuindo a criação de lixo espacial gerado pela destruição precoce desses equipamentos e 
+                melhorando a qualidade de serviços que dependem deles.
             </p>
         </section>
 
@@ -100,9 +119,7 @@
             <p>
                 Atendemos empresas espaciais e governos que lançam e operam satélites na órbita terrestre.
             </p>
-            <p>
-                Beneficiamos também toda a sociedade que depende de serviços de comunicação e clima.
-            </p>
+
         </section>
 
         <!-- SECAO 5: Beneficios -->
@@ -127,7 +144,7 @@
             </p>
         </section>
 
-        <!-- SECAO EXTRA: Quiz Dinamico Interativo de 10 perguntas -->
+        <!-- Quiz Dinamico Interativo de 10 perguntas -->
         <section class="card" id="quiz">
             <h2>Quiz Interativo Espacial</h2>
             <div class="quiz-wrapper">
@@ -175,7 +192,7 @@
 
     <!-- RODAPE: Deve conter EXCLUSIVAMENTE o primeiro nome e o RM dos integrantes -->
     <footer id="rodape">
-        Felipe (RM: 569631), Ricardo (RM: 572916), Daniel (RM: 571746), Leonardo (RM: 569631), Jecky (RM: 572226)
+        Daniel (RM: 571746), Felipe (RM: 569631), Leonardo (RM: 569631), Ricardo (RM: 572916), Jecky (RM: 572226)
     </footer>
 
 </body>

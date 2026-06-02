@@ -1,213 +1,248 @@
 /* ==========================================================================
-   ARQUIVO DE ESTILOS PRINCIPAL - SAFE ORBIT
-   Este arquivo utiliza CSS Flexbox para layouts, variaveis CSS para temas
-   e estilos premium para uma interface limpa e moderna.
+   ARQUIVO DE ESTILOS PRINCIPAL - SAFE ORBIT (ESTILO xAI)
+   Este arquivo implementa a identidade visual inspirada no xAI:
+   Midnight Command Center (Fundo Deep Midnight, botoes pill-shaped,
+   fontes Inter/Space Mono e design minimalista e técnico).
    Comentarios em portugues para auxiliar iniciantes na programacao.
    ========================================================================== */
 
-/* --- CONFIGURACOES DE FONTES --- */
+/* --- CONFIGURACOES DE FONTES E VARIAVEIS GERAIS (DESIGN.md) --- */
 :root {
-    --font-titulo: "Orbitron", sans-serif;
-    --font-corpo: "Orbitron", sans-serif; /* Usando Orbitron para a identidade espacial do site */
+    /* Fontes do Sistema xAI (Substitutos recomendados no DESIGN.md) */
+    --font-universalsans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-geistmono: 'Space Mono', ui-monospace, monospace;
+
+    /* Escala de Espacamento */
+    --spacing-4: 4px;
+    --spacing-8: 8px;
+    --spacing-12: 12px;
+    --spacing-16: 16px;
+    --spacing-20: 20px;
+    --spacing-24: 24px;
+    --spacing-32: 32px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
+    --spacing-64: 64px;
+    --spacing-128: 128px;
+
+    /* Dimensoes do Grid/Flex do Layout */
+    --section-gap: var(--spacing-48);
+    --card-padding: var(--spacing-16);
+    --element-gap: var(--spacing-12);
+
+    /* Arredondamento (Border Radius) do xAI */
+    --radius-inputs: 24px;
+    --radius-buttons: 9999px; /* Formato pílula (pill-shaped) */
+    --radius-calloutcards: 0px; /* Borda reta (sharp) para cartoes de destaque */
+
+    /* Efeitos de Sombra */
+    --shadow-subtle: rgb(113, 113, 122) 0px 0px 0px 2px;
 }
 
-/* --- DEFINICAO DE TEMAS (VARIAVEIS DE CORES) --- */
+/* --- CONFIGURACOES DE CORES DOS 3 TEMAS (VARIAVEIS CSS) --- */
 
-/* 1. Tema Padrao (Classic Dark Space) */
+/* 1. Tema Padrao (xAI Classic - Deep Midnight) */
 body.tema-padrao {
-    --bg-pagina: #0a0e1a;            /* Fundo principal escuro espacial */
-    --bg-header: #0f1626;            /* Fundo do cabecalho */
-    --bg-card: #151c35;              /* Fundo dos cartoes de conteudo */
-    --text-principal: #f8f9fa;       /* Cor do texto principal */
-    --text-secundario: #a2a8c3;     /* Cor de textos secundarios/paragrafos */
-    --cor-destaque: #59eed8;         /* Cor principal para detalhes/botoes */
-    --cor-destaque-hover: #3ad3be;   /* Cor do destaque com efeito hover */
-    --bg-rodape: #070a12;            /* Fundo do rodape */
+    --bg-pagina: #0c0c0b;            /* Deep Midnight Canvas */
+    --bg-header: #0c0c0b;
+    --bg-card: #0c0c0b;              /* Fundo escuro do cartao */
+    --border-card: #1f2228;          /* Faded Steel */
+    --text-principal: #ffffff;       /* Frost White */
+    --text-secundario: #7d8187;      /* Muted Ash */
+    --border-whisper: #474747;       /* Whisper Gray */
+    --cor-destaque: #2563eb;         /* Electric Blue */
+    --bg-input: #0c0c0b;             /* Fundo escuro para inputs */
+    --bg-botao-preenchido: #ffffff;  /* Botao preenchido branco */
+    --text-botao-preenchido: #0c0c0b;/* Texto escuro no botao */
+    --gradient-rodape: linear-gradient(to right, rgba(255, 99, 8, 0.05), rgba(189, 201, 230, 0.05), rgba(151, 196, 255, 0.05));
 }
 
-/* 2. Tema Nebulosa (Space Purple) */
-body.tema-nebulosa {
-    --bg-pagina: #140d24;            /* Fundo roxo escuro */
-    --bg-header: #1c1332;
-    --bg-card: #271a47;
-    --text-principal: #fbfaff;
-    --text-secundario: #b6adcc;
-    --cor-destaque: #e07afe;         /* Rosa/Roxo neon */
-    --cor-destaque-hover: #c75edd;
-    --bg-rodape: #0e091b;
+/* 2. Tema Cinza-claro (Light Gray) */
+body.tema-cinza {
+    --bg-pagina: #d4d4d8;            /* Fundo cinza medio (Zinc-300) */
+    --bg-header: #c4c4c7;            /* Cabecalho cinza ligeiramente mais escuro (Zinc-350) */
+    --bg-card: #ffffff;              /* Cartoes brancos para contraste destacado */
+    --border-card: #a1a1aa;          /* Bordas de divisao de cinza medio (Zinc-400) */
+    --text-principal: #18181b;       /* Texto escuro (Zinc-900) */
+    --text-secundario: #3f3f46;      /* Texto secundario (Zinc-700) */
+    --border-whisper: #71717a;       /* Whisper Gray medio */
+    --cor-destaque: #2563eb;         /* Detalhes em azul eletrico */
+    --bg-input: #ffffff;             /* Fundo branco para inputs */
+    --bg-botao-preenchido: #18181b;  /* Botao escuro */
+    --text-botao-preenchido: #ffffff;/* Texto claro no botao */
+    --gradient-rodape: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.03));
 }
 
-/* 3. Tema Eclipse (Solar Gold) */
-body.tema-eclipse {
-    --bg-pagina: #12100e;            /* Fundo marrom/preto do eclipse */
-    --bg-header: #1a1613;
-    --bg-card: #28211a;
-    --text-principal: #fefdfb;
-    --text-secundario: #c3b9b0;
-    --cor-destaque: #f4b251;         /* Amarelo/Dourado solar */
-    --cor-destaque-hover: #dca042;
-    --bg-rodape: #0c0a09;
+/* 3. Tema Azul-claro (Light Blue) */
+body.tema-azul {
+    --bg-pagina: #bae6fd;            /* Fundo azul claro destacado (Sky-200) */
+    --bg-header: #7dd3fc;            /* Cabecalho azul (Sky-300) */
+    --bg-card: #ffffff;              /* Cartoes brancos para contraste */
+    --border-card: #38bdf8;          /* Bordas azul celeste (Sky-400) */
+    --text-principal: #0c4a6e;       /* Texto azul escuro (Sky-900) */
+    --text-secundario: #1e3a8a;      /* Texto secundario azul marinho */
+    --border-whisper: #0284c7;       /* Azul celeste escuro */
+    --cor-destaque: #0284c7;         /* Destaques em azul celeste */
+    --bg-input: #ffffff;             /* Fundo branco para inputs */
+    --bg-botao-preenchido: #0c4a6e;  /* Botao escuro azul */
+    --text-botao-preenchido: #ffffff;/* Texto claro no botao */
+    --gradient-rodape: linear-gradient(to right, rgba(2, 132, 199, 0.04), rgba(56, 189, 248, 0.08), rgba(2, 132, 199, 0.04));
 }
 
-/* --- ESTILOS DO CORPO (BODY) --- */
+/* --- ESTILOS GERAIS DO CORPO (BODY) --- */
 body {
     background-color: var(--bg-pagina);
     color: var(--text-principal);
-    font-family: var(--font-corpo);
-    transition: background-color 0.4s ease, color 0.4s ease; /* Transicao suave ao trocar de tema */
+    font-family: var(--font-universalsans);
+    letter-spacing: -0.025em; /* Espacamento compacto do xAI */
+    transition: background-color 0.4s ease, color 0.4s ease;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* --- CABECALHO E MENU (HEADER & NAV) --- */
+/* --- CABECALHO E NAVEGACAO (HEADER & NAV) --- */
 header {
     background-color: var(--bg-header);
-    padding: 15px 40px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid var(--border-card);
+    padding: var(--spacing-16) var(--spacing-40);
     display: flex;
     flex-direction: row;
-    justify-content: space-between; /* Mantem logo e menu separados nas extremidades */
+    justify-content: space-between;
     align-items: center;
-    position: sticky; /* Mantem a barra de navegacao fixa no topo ao rolar */
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-/* Logo e Nome do Grupo */
 .header-logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: var(--spacing-12);
 }
 
 #img-logo {
-    width: 60px;
+    width: 48px;
     height: auto;
+    filter: brightness(0.95); /* Deixa a logo ligeiramente integrada ao tema escuro */
 }
 
 #logo {
-    font-size: 22px;
-    color: var(--cor-destaque);
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 20px;
+    color: var(--text-principal);
+    font-weight: 600;
+    letter-spacing: -0.025em;
 }
 
 /* Barra de Navegacao */
 nav {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: var(--spacing-20);
 }
 
 nav a {
     color: var(--text-secundario);
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 0;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
-    color: var(--cor-destaque);
+    color: var(--text-principal); /* Hover neutro sem sublinhado pesado */
 }
 
-/* Estado visual ativo para indicar a secao atual */
+/* Link ativo visualmente destacado usando borda inferior discreta */
 nav a.active {
-    color: var(--cor-destaque);
-    border-bottom: 2px solid var(--cor-destaque);
+    color: var(--text-principal);
+    border-bottom: 1px solid var(--text-principal);
 }
 
-/* --- SELETOR DE TEMAS --- */
+/* --- SELETOR DE TEMAS (GHOST PILLS) --- */
 .painel-temas {
     display: flex;
-    gap: 8px;
-    margin-left: 15px;
-    border-left: 1px solid var(--text-secundario);
-    padding-left: 15px;
+    gap: var(--spacing-8);
+    margin-left: var(--spacing-16);
+    border-left: 1px solid var(--border-card);
+    padding-left: var(--spacing-16);
 }
 
 .tema-btn {
-    border: none;
-    width: 24px;
-    height: 24px;
+    border: 1px solid var(--border-whisper);
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .tema-btn:hover {
-    transform: scale(1.2); /* Zoom ao passar o mouse */
+    transform: scale(1.15);
+    border-color: var(--text-principal);
 }
 
-#tema-padrao { background-color: #59eed8; border: 2px solid #fff; }
-#tema-nebulosa { background-color: #e07afe; border: 2px solid #fff; }
-#tema-eclipse { background-color: #f4b251; border: 2px solid #fff; }
+#tema-padrao { background-color: #0c0c0b; border: 1px solid #ffffff; }
+#tema-cinza { background-color: #d4d4d8; border: 1px solid #71717a; }
+#tema-azul { background-color: #bae6fd; border: 1px solid #0284c7; }
 
 /* --- CONTEUDO PRINCIPAL (MAIN) --- */
 .container {
-    flex: 1; /* Garante que o main ocupe o espaco disponivel empurrando o rodape para baixo */
-    max-width: 1000px;
+    flex: 1;
+    max-width: 800px; /* Layout centralizado e contido do xAI */
     width: 100%;
-    margin: 40px auto;
-    padding: 0 20px;
+    margin: var(--section-gap) auto;
+    padding: 0 var(--spacing-20);
     display: flex;
     flex-direction: column;
-    gap: 40px; /* Espacamento vertical entre as secoes usando Flexbox */
+    gap: var(--section-gap); /* Espacamento vertical de 48px exigido pelo DESIGN.md */
 }
 
-/* --- CARDS E SECOES --- */
+/* --- CARTÕES DE DESTAQUE (CALLOUT CARDS) --- */
 .card {
     background-color: var(--bg-card);
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-calloutcards); /* Borda reta (0px) obrigatoria pelo xAI */
+    padding: var(--card-padding);             /* Padding de 16px obrigatorio */
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: var(--element-gap);                  /* Espacamento interno de 12px */
+    transition: border-color 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--border-whisper); /* Mudanca sutil ao passar o mouse */
 }
 
 .card h2 {
-    color: var(--cor-destaque);
+    color: var(--text-principal);
     font-size: 20px;
-    letter-spacing: 1px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    padding-bottom: var(--spacing-4);
 }
 
 .card p {
     color: var(--text-secundario);
-    font-size: 14px;
-    line-height: 1.6;
-    text-align: justify;
+    font-size: 16px;
+    line-height: 1.5; /* Altura de linha de 1.5 obrigatoria no DESIGN.md */
+    text-align: left; /* Alinhamento a esquerda limpo */
 }
 
-/* --- SLIDESHOW --- */
+/* --- SLIDESHOW (MINIMALISTA) --- */
 .slideshow-secao {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    gap: var(--element-gap);
 }
 
 .slideshow-wrapper {
     position: relative;
     width: 100%;
-    max-width: 800px;
-    height: 400px;
-    border-radius: 12px;
+    height: 380px;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-calloutcards); /* Borda de 0px conforme cartao */
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -216,185 +251,193 @@ nav a.active {
 #slideshow-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Faz com que a imagem preencha a tela sem distorcer */
-    transition: opacity 0.3s ease;
+    object-fit: cover;
+    filter: grayscale(0.2) contrast(1.1); /* Estilo de imagem levemente técnico */
 }
 
-/* Botoes de controle do slide */
+/* Botoes de controle do slideshow (Estilo Ghost Primary Button - DESIGN.md) */
 .slide-ctrl-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.2);
-    font-size: 20px;
-    padding: 12px 18px;
+    background-color: rgba(12, 12, 11, 0.7); /* Deep Midnight com transparencia */
+    color: var(--text-principal);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 16px;
+    padding: 8px 16px; /* Padding vertical 8px, horizontal 16px */
     cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.2s, color 0.2s;
+    border-radius: var(--radius-buttons); /* Totalmente arredondado (9999px) */
+    font-family: var(--font-universalsans);
+    transition: background-color 0.2s, border-color 0.2s;
     user-select: none;
 }
 
 .slide-ctrl-btn:hover {
-    background-color: var(--cor-destaque);
-    color: #000;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--text-principal);
 }
 
-#slide-anterior { left: 20px; }
-#slide-proximo { right: 20px; }
+#slide-anterior { left: var(--spacing-16); }
+#slide-proximo { right: var(--spacing-16); }
 
-/* --- FORMULARIO DE CONTATO --- */
+/* --- FORMULÁRIO DE CONTATO (ESTILO xAI INPUTS E CTAS) --- */
 .form-contato {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: var(--spacing-16);
 }
 
 .form-grupo {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--spacing-4);
 }
 
+/* Label de formulario estilo Badge/GeistMono */
 .form-grupo label {
+    font-family: var(--font-geistmono);
     font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.1em; /* Espacamento largo para visual tecnico */
     color: var(--text-secundario);
+    text-transform: uppercase;
 }
 
+/* Campos de Entrada Interativos (Interactive Text Input - DESIGN.md) */
 .form-grupo input, 
 .form-grupo textarea {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 12px;
+    background-color: var(--bg-input); /* Fundo dinamico de acordo com o tema */
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-inputs); /* Arredondamento de 24px */
+    padding: var(--spacing-16);
     color: var(--text-principal);
-    font-size: 14px;
+    font-size: 16px;
+    font-family: var(--font-universalsans);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .form-grupo input:focus, 
 .form-grupo textarea:focus {
-    border-color: var(--cor-destaque); /* Realce ao focar no campo */
+    border-color: var(--cor-destaque);
+    box-shadow: var(--shadow-subtle); /* Focus ring sutil exigido pelo DESIGN.md */
 }
 
-/* Botao geral do site */
+/* Botao Principal Preenchido (Filled Secondary Button - DESIGN.md) */
 .btn-site {
-    background-color: var(--cor-destaque);
-    color: #0a0e1a;
+    background-color: var(--bg-botao-preenchido); /* Fundo do botao dinamico */
+    color: var(--text-botao-preenchido);          /* Cor do texto dinamica */
     border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: 700;
+    padding: var(--spacing-8) var(--spacing-24); /* Padding confortavel */
+    border-radius: var(--radius-buttons);    /* Pill-shaped 9999px */
+    font-weight: 400;
     cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.2s ease;
-    align-self: flex-start; /* Alinha o botao a esquerda no Flexbox */
+    font-family: var(--font-universalsans);
+    transition: background-color 0.2s, opacity 0.2s, filter 0.2s;
+    align-self: flex-start;
 }
 
 .btn-site:hover {
-    background-color: var(--cor-destaque-hover);
-    transform: translateY(-2px);
+    filter: brightness(0.9); /* Escurece sutilmente no hover, funcionando em qualquer tema */
 }
 
 #form-erro-mensagem {
-    font-size: 13px;
-    margin-top: 5px;
-    display: none; /* Escondido por padrao ate que ocorra um erro */
+    font-family: var(--font-geistmono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    margin-top: var(--spacing-4);
+    display: none;
 }
 
-/* --- QUIZ DINAMICO --- */
+/* --- QUIZ DINÂMICO (VISUAL COM FONTES MONOSPACED) --- */
 .quiz-wrapper {
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 20px;
+    border-top: 1px solid var(--border-card);
+    padding-top: var(--spacing-16);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--spacing-16);
 }
 
+/* Badge indicadora no estilo GeistMono */
 #quiz-numero-pergunta {
+    font-family: var(--font-geistmono);
     font-size: 12px;
-    color: var(--cor-destaque);
+    color: var(--text-secundario);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 #quiz-pergunta-texto {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1.5;
+    color: var(--text-principal);
 }
 
-/* Container das opcoes de respostas */
+/* Opcoes do quiz - Botoes de contorno sutil */
 .quiz-opcoes-grid {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--spacing-8);
 }
 
 .quiz-opcao-btn {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: transparent;
     color: var(--text-principal);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 12px 15px;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-buttons); /* Pill-shaped 9999px */
+    padding: var(--spacing-12) var(--spacing-20);
     text-align: left;
     cursor: pointer;
+    font-family: var(--font-universalsans);
     transition: all 0.2s ease;
 }
 
 .quiz-opcao-btn:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-    border-color: var(--cor-destaque);
-    padding-left: 20px; /* Efeito visual de movimento ao passar o mouse */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-principal);
 }
 
-/* Tela final do Quiz */
+/* Resultado do Quiz */
 #quiz-resultado-container {
     text-align: center;
-    padding: 20px 0;
+    padding: var(--spacing-20) 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: var(--spacing-16);
 }
 
 #quiz-resultado-texto {
     font-size: 18px;
-    font-weight: 700;
-    color: var(--cor-destaque);
+    font-weight: 600;
+    color: var(--text-principal);
 }
 
-/* --- RODAPE (FOOTER) --- */
+/* --- RODAPE (FOOTER COM GRADIENTE xAI) --- */
 footer {
-    background-color: var(--bg-rodape);
+    background: var(--gradient-rodape); /* Efeito decorativo sutil do xAI */
     color: var(--text-secundario);
     text-align: center;
-    padding: 25px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: auto; /* Empurra o rodape para o final da tela */
+    padding: var(--spacing-32);
+    font-family: var(--font-geistmono); /* Texto tecnico em Space Mono */
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    border-top: 1px solid var(--border-card);
+    margin-top: auto;
 }
 
-/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+/* --- RESPONSIVIDADE ADAPTADA --- */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-        gap: 15px;
-        padding: 20px;
+        gap: var(--spacing-12);
+        padding: var(--spacing-16);
     }
 
     nav {
-        flex-wrap: wrap; /* Permite que os links quebrem linha em telas pequenas */
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        gap: var(--spacing-12);
     }
 
     .painel-temas {
@@ -404,15 +447,104 @@ footer {
     }
 
     .slideshow-wrapper {
-        height: 250px;
+        height: 240px;
     }
 
     .slide-ctrl-btn {
-        padding: 8px 12px;
-        font-size: 16px;
+        padding: 6px 12px;
+        font-size: 14px;
     }
 
     .container {
-        margin: 20px auto;
+        margin: var(--spacing-24) auto;
+    }
+}
+
+/* --- TELA DE ABERTURA (SPLASH SCREEN DE VIDEO) --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0c0c0b; /* Fundo escuro fixo */
+    z-index: 99999;           /* z-index altissimo para sobrepor todo o site */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease; /* Efeito suave de desaparecimento */
+}
+
+/* Estado ocultado apos finalizacao */
+#splash-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.splash-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#splash-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta o video para cobrir toda a tela do navegador */
+}
+
+/* Botao de Pular/Entrar sutil sobre o video */
+.btn-site-splash {
+    position: absolute;
+    bottom: var(--spacing-48);
+    background-color: #ffffff; /* Sempre branco (Frost White) contra o fundo escuro do splash */
+    color: #0c0c0b;            /* Sempre escuro (Deep Midnight) */
+    border: none;
+    padding: var(--spacing-12) var(--spacing-32);
+    border-radius: var(--radius-buttons); /* Pill-shaped 9999px */
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-universalsans);
+    letter-spacing: -0.025em;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-site-splash:hover {
+    background-color: #e5e5e5;
+    transform: scale(1.05);
+}
+
+/* Estilizacao do Titulo no meio do Splash Screen */
+.splash-titulo {
+    position: absolute;
+    font-family: 'Orbitron', var(--font-universalsans);
+    font-size: clamp(36px, 8vw, 72px); /* Responsivo para celulares e desktops */
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    pointer-events: none; /* Garante que nao interfira em cliques na tela */
+    text-align: center;
+    padding: 0 var(--spacing-20);
+    z-index: 10;
+    animation: splashFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Animacao premium de entrada do titulo */
+@keyframes splashFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.92);
+        letter-spacing: 0.05em;
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        letter-spacing: 0.15em;
     }
 }
