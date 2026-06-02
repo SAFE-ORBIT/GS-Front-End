@@ -3,77 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS Externo -->
-    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Safe Orbit - Monitoramento e Protecao Espacial</title>
+    
+    <!-- Link para o Google Fonts (Orbitron) conforme exigido pelo BRD -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-    <title>Safe Orbit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Externo: Reset primeiro, depois estilos customizados da pagina -->
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    
+    <!-- JavaScript Externo carregado de forma assincrona/adiada -->
+    <script src="./src/js/script.js" defer></script>
 </head>
-<body>
-    <!-- Cabeçalho e logo -->
+<body class="tema-padrao">
+
+    <!-- CABECALHO: Contem o nome da solucao, logo, navegacao e painel de temas -->
     <header>
-        <img src="./src/imgs/Logo-Safe-Orbit.png" alt="Logo do grupo Safe Orbit" id="img-logo">
-        <h1 id="logo"> Safe Orbit</h1>
+        <div class="header-logo">
+            <!-- Atributo alt obrigatorio pelo BRD -->
+            <img src="./src/imgs/Logo-Safe-Orbit.png" alt="Logotipo da Safe Orbit mostrando um satelite em orbita da Terra" id="img-logo">
+            <h1 id="logo">Safe Orbit</h1>
+        </div>
+        
+        <!-- Menu de navegacao funcional entre as secoes do site -->
+        <nav>
+            <a href="#problema">Problema</a>
+            <a href="#tecnologia">Tecnologias</a>
+            <a href="#objetivos">Objetivos</a>
+            <a href="#publico-alvo">Publico-Alvo</a>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#aplicacoes">Dia a Dia</a>
+            
+            <!-- Painel para selecao dos 3 temas de fundo exigidos -->
+            <div class="painel-temas">
+                <button id="tema-padrao" class="tema-btn" title="Tema Escuro Padrao"></button>
+                <button id="tema-nebulosa" class="tema-btn" title="Tema Nebulosa Roxo"></button>
+                <button id="tema-eclipse" class="tema-btn" title="Tema Eclipse Dourado"></button>
+            </div>
+        </nav>
     </header>
-    <!-- Divisão das sessões de conteúdo da página -->
+
+    <!-- CONTAINER PRINCIPAL: Centraliza e organiza o conteudo em Flexbox -->
     <main class="container">
-        <div class="card" id="problema">
+        
+        <!-- SLIDESHOW: Galeria com 3 imagens relacionadas a Industria Espacial -->
+        <section class="card slideshow-secao">
+            <h2>Galeria Espacial</h2>
+            <div class="slideshow-wrapper">
+                <!-- Imagem inicial carregada. Atributo alt obrigatorio preenchido -->
+                <img id="slideshow-img" src="./src/imgs/debris_orbit.png" alt="Ilustracao digital de satelites orbitando a Terra rodeados por pequenos detritos espaciais">
+                <!-- Botoes de navegacao do slide -->
+                <button id="slide-anterior" class="slide-ctrl-btn" aria-label="Slide anterior">&lt;</button>
+                <button id="slide-proximo" class="slide-ctrl-btn" aria-label="Proximo slide">&gt;</button>
+            </div>
+        </section>
+
+        <!-- SECAO 1: O Problema -->
+        <!-- Respeita rigidamente as regras: max 20 palavras por paragrafo, max 2 paragrafos -->
+        <section class="card" id="problema">
             <h2>Problema</h2>
             <p>
-                Nós da Safe Orbit escolhemos investigar quais problemas existem no espaço e como podemos resolve-los, e o problema que achamos pertinetes resolver é o problema com lixo espacial
-                e seus impactos para satélites que permanecem ao redor da órbita da Terra. O monitoramento atual apenas analisa objetos com um tamanho rasoavel o que possibilita analisar cerca de 30.000 objetos,
-                porém existem mais de 100 milhões de objetos que atualmente não são observados e ao longo do tempo causam danos aos satélites causando uma possível destruição antecipada dessas ferramentas que orbitam o nosso planeta,
-                nós queremos mudar exatamente essa parte do problema que investigamos.
+                O lixo espacial ameaça satélites na órbita terrestre. Milhões de detritos perigosos não são monitorados atualmente.
             </p>
             <p>
-                A nossa solução visa diminuir a quantidade de impactos ocorridos entre satélites e detritos no espaço, pensando nisso desenvolvemos um sistema de monitoramento para analisar todos os objetos nas proximidades
-                dos satélites e um algoritimo que realiza cálculos para prever e entender se existe a necessidade de desvio e caso o desvio seja necessário entrar com ações de manobras evasivas utilizando preferencialmente 
-                propulsores elétricos, porém em casos de desvios urgentes será utilizado o propulsor químico do satélite.  
+                Nossa solução monitora detritos e realiza desvios automáticos. Também repara impactos com cápsulas de resina protetora.
+            </p>
+        </section>
+
+        <!-- SECAO 2: Tecnologia -->
+        <section class="card" id="tecnologia">
+            <h2>Tecnologia</h2>
+            <p>
+                Usamos radares avançados para detectar objetos de qualquer tamanho. Um algoritmo inteligente calcula riscos de colisão.
             </p>
             <p>
-                Também é englobado na solução uma maneira de reparar os danos causados pelos objetos que não foram desviados corretamente, faremos isso utilizando cápsulas de resinas que ao detectarem dano ao satélite 
-                irá soltar uma resina expansiva que cobrirá o dano causado pelo impacto aumentando a expectativa de vida de satélites. 
+                Se houver colisão iminente, propulsores elétricos ou químicos realizam desvios. Cápsulas de resina reparam danos físicos.
             </p>
-        </div>
-        <div class="card" id="tecnologia">
-            <h2>Tecnologias</h2>
-            <p>
-              A nossa solução utilizará tecnologias de rastreamento e monitoramento, como radares que detectam objetos espaciais de vários tamanhos desde mm até m de diâmetro, além disso criaremos um algoritimo para o monitoramento
-              desses objetos, também implementaremos um algoritimo que possui como objetivo analisar o comportamento dos objetos dedectados pelos radares de monitoramento e realizar cálculos para prever se ocorrerá colisão e se existir a possibilidade
-              de colisão tomar as medidas necessárias para desviar do objeto, caso o desvio não tenha o sucesso esperado ou exista algum dano no exterior do satélite existirá um sistema de reparo que utiliza cápsulas de resina para recuperar o dano causado pelo impacto.
-            </p>
-        </div>
-        <div class="card" id="objetivos">
+        </section>
+
+        <!-- SECAO 3: Objetivos -->
+        <section class="card" id="objetivos">
             <h2>Objetivos</h2>
             <p>
-                A visão ao pensar nessa solução é diminuir a quantidade de colisões espaciais entre satélites e outros objetos que estão em órbita, além de poder reparar alguns danos causados por qualquer impacto durante a rota dos satélites, permitindo assim que a nossa solução
-                possibilite um satélite permanecer em operação por mais tempo e como consequência diminuir a quantidade de lixo espacial existente causado pela substituição de satélites mortos. 
+                Nosso objetivo é evitar colisões e aumentar a vida útil dos satélites em órbita ativa.
             </p>
-        </div>
-        <div class="card" id="publico-alvo">
+            <p>
+                Queremos reduzir a criação de lixo espacial gerado pela destruição precoce desses equipamentos.
+            </p>
+        </section>
+
+        <!-- SECAO 4: Publico-Alvo -->
+        <section class="card" id="publico-alvo">
             <h2>Público-Alvo</h2>
             <p>
-                Os usuários que serão atendidos pela nossa solução são todos aqueles que pretendem lançar satélites para a órbita da Terra e aqueles que gostariam que seus satélites durassem mais realizando a função pela qual ele foi desenvolvido, gerando assim um benefício financeiro para 
-                as empresas que lançam satélites e todos aqueles que são impactados pelo lixo espacial.
+                Atendemos empresas espaciais e governos que lançam e operam satélites na órbita terrestre.
             </p>
-        </div>
-        <div class="card" id="beneficios">
+            <p>
+                Beneficiamos também toda a sociedade que depende de serviços de comunicação e clima.
+            </p>
+        </section>
+
+        <!-- SECAO 5: Beneficios -->
+        <section class="card" id="beneficios">
             <h2>Benefícios</h2>
             <p>
-                Com a utilização da nossa solução o usuário terá uma maior expectativa de vida para os seus objetos lançados à órbita do planeta, já que ele possuirá um sistema de monitoramento e análise para o desvio de objetos que podem gerar problemas para a posse da empresa e 
-                em caso de danos a empresa terá à bordo um método de reparo à danos com a utiliação de cápsulas de resina.
+                Garantimos maior durabilidade aos satélites e proteção contra colisões inesperadas com lixo espacial.
             </p>
-        </div>
-        <div class="card" id="aplicacoes">
-            <h2>Aplicações no Dia-a-Dia</h2>
             <p>
-                As aplicações que disponibilizamos com a nossa solução é o monitoramento de objetos, análise de risco de impactos, desvios de objetos direcionados à gerar danos ao satélite, além de um sistema de reparo de danos.
+                Oferecemos economia financeira e continuidade dos serviços de dados transmitidos pelos satélites.
             </p>
-        </div>
+        </section>
+
+        <!-- SECAO 6: Aplicacoes no dia a dia -->
+        <section class="card" id="aplicacoes">
+            <h2>Aplicação no dia a dia</h2>
+            <p>
+                Na prática, monitoramos o espaço, calculamos rotas de colisão e agimos de forma preventiva.
+            </p>
+            <p>
+                Caso ocorram pequenos impactos, as cápsulas de resina reparam a estrutura do satélite imediatamente.
+            </p>
+        </section>
+
+        <!-- SECAO EXTRA: Quiz Dinamico Interativo de 10 perguntas -->
+        <section class="card" id="quiz">
+            <h2>Quiz Interativo Espacial</h2>
+            <div class="quiz-wrapper">
+                <!-- Container das perguntas (Exibido inicialmente) -->
+                <div id="quiz-pergunta-container">
+                    <div id="quiz-numero-pergunta">Carregando...</div>
+                    <p id="quiz-pergunta-texto"></p>
+                    <div id="quiz-opcoes-container" class="quiz-opcoes-grid">
+                        <!-- As opcoes de resposta serao inseridas dinamicamente via JS -->
+                    </div>
+                </div>
+                <!-- Container do Resultado (Escondido inicialmente) -->
+                <div id="quiz-resultado-container" style="display: none;">
+                    <h3>Quiz Concluido!</h3>
+                    <p id="quiz-resultado-texto"></p>
+                    <button id="quiz-reiniciar" class="btn-site">Jogar Novamente</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECAO EXTRA: Formulario de Contato com Valuacao JavaScript -->
+        <section class="card" id="contato">
+            <h2>Fale Conosco</h2>
+            <!-- A acao e barrada pelo JS se houver campos em branco -->
+            <form id="formulario-contato" class="form-contato">
+                <div class="form-grupo">
+                    <label for="form-nome">Nome Completo</label>
+                    <input type="text" id="form-nome" placeholder="Digite seu nome">
+                </div>
+                <div class="form-grupo">
+                    <label for="form-email">E-mail para Contato</label>
+                    <input type="email" id="form-email" placeholder="nome@exemplo.com">
+                </div>
+                <div class="form-grupo">
+                    <label for="form-mensagem">Mensagem</label>
+                    <textarea id="form-mensagem" rows="4" placeholder="Escreva sua mensagem aqui..."></textarea>
+                </div>
+                <button type="submit" class="btn-site">Enviar Mensagem</button>
+                <!-- Texto que recebe mensagem de erro do JS se houver campo vazio -->
+                <p id="form-erro-mensagem"></p>
+            </form>
+        </section>
+
     </main>
-    <footer id="rodape">&copy; 2026 Todos Diretos Reservados - Safe Orbit | Realizado por : Felipe Pedrol (RM: 569631), Ricardo Salmerón Paulino de Souza (RM: 572916), Daniel Roberto (RM: 571746), Leonardo Ferreira Barbosa (RM: 569631), Jecky Cossio Zhu (RM:572226) </footer>
+
+    <!-- RODAPE: Deve conter EXCLUSIVAMENTE o primeiro nome e o RM dos integrantes -->
+    <footer id="rodape">
+        Felipe (RM: 569631), Ricardo (RM: 572916), Daniel (RM: 571746), Leonardo (RM: 569631), Jecky (RM: 572226)
+    </footer>
 
 </body>
 </html>
-

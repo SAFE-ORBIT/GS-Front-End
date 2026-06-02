@@ -1,82 +1,418 @@
-:root{
-    --color1: #2d3133;
-    --background-color:#101415;
-    --background-cards:#151c35;
-    --background-color2:#04090c;
-    --font-family: "Orbitron", sans-serif;
-    --text-color: #f8f8f8;
-    --text-color2: #59eed8;
+/* ==========================================================================
+   ARQUIVO DE ESTILOS PRINCIPAL - SAFE ORBIT
+   Este arquivo utiliza CSS Flexbox para layouts, variaveis CSS para temas
+   e estilos premium para uma interface limpa e moderna.
+   Comentarios em portugues para auxiliar iniciantes na programacao.
+   ========================================================================== */
+
+/* --- CONFIGURACOES DE FONTES --- */
+:root {
+    --font-titulo: "Orbitron", sans-serif;
+    --font-corpo: "Orbitron", sans-serif; /* Usando Orbitron para a identidade espacial do site */
 }
 
-*{
-    margin:0;
-    padding:0;
+/* --- DEFINICAO DE TEMAS (VARIAVEIS DE CORES) --- */
+
+/* 1. Tema Padrao (Classic Dark Space) */
+body.tema-padrao {
+    --bg-pagina: #0a0e1a;            /* Fundo principal escuro espacial */
+    --bg-header: #0f1626;            /* Fundo do cabecalho */
+    --bg-card: #151c35;              /* Fundo dos cartoes de conteudo */
+    --text-principal: #f8f9fa;       /* Cor do texto principal */
+    --text-secundario: #a2a8c3;     /* Cor de textos secundarios/paragrafos */
+    --cor-destaque: #59eed8;         /* Cor principal para detalhes/botoes */
+    --cor-destaque-hover: #3ad3be;   /* Cor do destaque com efeito hover */
+    --bg-rodape: #070a12;            /* Fundo do rodape */
 }
 
-
-head{
-    background-color: var(--background-color);
+/* 2. Tema Nebulosa (Space Purple) */
+body.tema-nebulosa {
+    --bg-pagina: #140d24;            /* Fundo roxo escuro */
+    --bg-header: #1c1332;
+    --bg-card: #271a47;
+    --text-principal: #fbfaff;
+    --text-secundario: #b6adcc;
+    --cor-destaque: #e07afe;         /* Rosa/Roxo neon */
+    --cor-destaque-hover: #c75edd;
+    --bg-rodape: #0e091b;
 }
 
+/* 3. Tema Eclipse (Solar Gold) */
+body.tema-eclipse {
+    --bg-pagina: #12100e;            /* Fundo marrom/preto do eclipse */
+    --bg-header: #1a1613;
+    --bg-card: #28211a;
+    --text-principal: #fefdfb;
+    --text-secundario: #c3b9b0;
+    --cor-destaque: #f4b251;         /* Amarelo/Dourado solar */
+    --cor-destaque-hover: #dca042;
+    --bg-rodape: #0c0a09;
+}
+
+/* --- ESTILOS DO CORPO (BODY) --- */
+body {
+    background-color: var(--bg-pagina);
+    color: var(--text-principal);
+    font-family: var(--font-corpo);
+    transition: background-color 0.4s ease, color 0.4s ease; /* Transicao suave ao trocar de tema */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- CABECALHO E MENU (HEADER & NAV) --- */
+header {
+    background-color: var(--bg-header);
+    padding: 15px 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Mantem logo e menu separados nas extremidades */
+    align-items: center;
+    position: sticky; /* Mantem a barra de navegacao fixa no topo ao rolar */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Logo e Nome do Grupo */
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
 #img-logo {
-    width: 80px;
+    width: 60px;
     height: auto;
 }
 
-body{
-    background-color: var(--background-color2);
-    font-family: var(--font-family);
-    color: var(--text-color);
-
+#logo {
+    font-size: 22px;
+    color: var(--cor-destaque);
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-header {
+/* Barra de Navegacao */
+nav {
     display: flex;
     align-items: center;
     gap: 20px;
-    background-color: var(--background-color);
-    color:var(--text-color2);
-    padding: 15px;
 }
 
+nav a {
+    color: var(--text-secundario);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
 
+nav a:hover {
+    color: var(--cor-destaque);
+}
+
+/* Estado visual ativo para indicar a secao atual */
+nav a.active {
+    color: var(--cor-destaque);
+    border-bottom: 2px solid var(--cor-destaque);
+}
+
+/* --- SELETOR DE TEMAS --- */
+.painel-temas {
+    display: flex;
+    gap: 8px;
+    margin-left: 15px;
+    border-left: 1px solid var(--text-secundario);
+    padding-left: 15px;
+}
+
+.tema-btn {
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.tema-btn:hover {
+    transform: scale(1.2); /* Zoom ao passar o mouse */
+}
+
+#tema-padrao { background-color: #59eed8; border: 2px solid #fff; }
+#tema-nebulosa { background-color: #e07afe; border: 2px solid #fff; }
+#tema-eclipse { background-color: #f4b251; border: 2px solid #fff; }
+
+/* --- CONTEUDO PRINCIPAL (MAIN) --- */
 .container {
-    display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    padding: 40px;
+    flex: 1; /* Garante que o main ocupe o espaco disponivel empurrando o rodape para baixo */
+    max-width: 1000px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Espacamento vertical entre as secoes usando Flexbox */
 }
 
-/* CARDS */
+/* --- CARDS E SECOES --- */
 .card {
-    background: var(--background-cards);
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    transition: 0.3s ease;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
 .card h2 {
-    color: var(--text-color2);
-    margin-bottom: 15px;
+    color: var(--cor-destaque);
+    font-size: 20px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 10px;
 }
 
 .card p {
-    padding: 5px;
+    color: var(--text-secundario);
+    font-size: 14px;
     line-height: 1.6;
     text-align: justify;
 }
 
-/* FOOTER */
-#rodape {
-    text-align: center;
+/* --- SLIDESHOW --- */
+.slideshow-secao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.slideshow-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#slideshow-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz com que a imagem preencha a tela sem distorcer */
+    transition: opacity 0.3s ease;
+}
+
+/* Botoes de controle do slide */
+.slide-ctrl-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 20px;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.slide-ctrl-btn:hover {
+    background-color: var(--cor-destaque);
+    color: #000;
+}
+
+#slide-anterior { left: 20px; }
+#slide-proximo { right: 20px; }
+
+/* --- FORMULARIO DE CONTATO --- */
+.form-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-grupo label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secundario);
+}
+
+.form-grupo input, 
+.form-grupo textarea {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+    color: var(--text-principal);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-grupo input:focus, 
+.form-grupo textarea:focus {
+    border-color: var(--cor-destaque); /* Realce ao focar no campo */
+}
+
+/* Botao geral do site */
+.btn-site {
+    background-color: var(--cor-destaque);
+    color: #0a0e1a;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    align-self: flex-start; /* Alinha o botao a esquerda no Flexbox */
+}
+
+.btn-site:hover {
+    background-color: var(--cor-destaque-hover);
+    transform: translateY(-2px);
+}
+
+#form-erro-mensagem {
+    font-size: 13px;
+    margin-top: 5px;
+    display: none; /* Escondido por padrao ate que ocorra um erro */
+}
+
+/* --- QUIZ DINAMICO --- */
+.quiz-wrapper {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
     padding: 20px;
-    background: #11182d;
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#quiz-numero-pergunta {
+    font-size: 12px;
+    color: var(--cor-destaque);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#quiz-pergunta-texto {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Container das opcoes de respostas */
+.quiz-opcoes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quiz-opcao-btn {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-principal);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 12px 15px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quiz-opcao-btn:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: var(--cor-destaque);
+    padding-left: 20px; /* Efeito visual de movimento ao passar o mouse */
+}
+
+/* Tela final do Quiz */
+#quiz-resultado-container {
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#quiz-resultado-texto {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cor-destaque);
+}
+
+/* --- RODAPE (FOOTER) --- */
+footer {
+    background-color: var(--bg-rodape);
+    color: var(--text-secundario);
+    text-align: center;
+    padding: 25px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: auto; /* Empurra o rodape para o final da tela */
+}
+
+/* --- RESPONSIVIDADE (MEDIA QUERIES) --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    nav {
+        flex-wrap: wrap; /* Permite que os links quebrem linha em telas pequenas */
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .painel-temas {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .slideshow-wrapper {
+        height: 250px;
+    }
+
+    .slide-ctrl-btn {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+    .container {
+        margin: 20px auto;
+    }
 }
